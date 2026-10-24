@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Builder Pro | Plan Smart. Build Better.</title>
+<style>
+:root{
+  --ink:#172033;--muted:#657087;--glass:rgba(255,255,255,.86);
+  --orange:#ff8a35;--violet:#8067ff;--teal:#20c6b7;--blue:#4d8dff;
+  --shadow:0 18px 55px rgba(15,23,42,.13);--radius:24px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:#f5f7fb;overflow-x:hidden}
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.topbar{position:fixed;z-index:20;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:16px clamp(18px,5vw,72px);background:rgba(15,23,42,.48);backdrop-filter:blur(16px);color:#fff;border-bottom:1px solid rgba(255,255,255,.15)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:850;font-size:1.2rem;letter-spacing:-.04em}
+.brand-mark{display:grid;place-items:center;width:38px;height:38px;border-radius:13px;background:linear-gradient(135deg,var(--orange),#ffcf70);color:#1d2433;font-size:1.2rem;box-shadow:0 6px 18px #ff8a3550}
+.navlinks{display:flex;gap:26px;align-items:center;font-size:.92rem}
+.navlinks a{opacity:.9;transition:.2s}.navlinks a:hover{opacity:1;color:#ffd5b6}
+.nav-cta,.btn{border:0;border-radius:999px;padding:12px 18px;font-weight:750;transition:transform .2s,box-shadow .2s}
+.nav-cta{background:#fff;color:#172033}.btn:hover,.nav-cta:hover{transform:translateY(-2px);box-shadow:0 12px 24px #17203320}
+.hero{min-height:760px;min-height:100svh;position:relative;display:flex;align-items:center;padding:125px clamp(20px,8vw,120px) 72px;color:white;isolation:isolate;background:#182033}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background-image:linear-gradient(90deg,rgba(10,16,31,.84),rgba(10,16,31,.42) 54%,rgba(10,16,31,.1)),url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2200&q=85");background-size:cover;background-position:center;animation:heroZoom 18s ease-in-out infinite alternate;transition:background-image .8s}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(8,15,28,.55),transparent 40%);pointer-events:none}
+@keyframes heroZoom{from{transform:scale(1)}to{transform:scale(1.07)}}
+.hero-content{max-width:770px;animation:rise .9s both}
+.eyebrow{display:inline-flex;gap:9px;align-items:center;padding:8px 13px;border:1px solid #ffffff55;background:#ffffff18;border-radius:999px;font-size:.82rem;backdrop-filter:blur(12px);margin-bottom:20px}
+.pulse{width:8px;height:8px;background:#53e2c1;border-radius:50%;box-shadow:0 0 0 5px #53e2c128}
+h1{font-size:clamp(2.8rem,6.4vw,6.2rem);line-height:.98;letter-spacing:-.065em;margin:0 0 22px}
+.gradient-text{background:linear-gradient(90deg,#ffbd7b,#ffe3a5,#a8f4e7);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:clamp(1rem,1.5vw,1.2rem);line-height:1.75;color:#e5e9f2;max-width:630px;margin:0 0 28px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn-primary{color:#202638;background:linear-gradient(135deg,#ffb36f,#ffd47f);box-shadow:0 12px 30px #ffad5a35}
+.btn-glass{background:#ffffff18;color:white;border:1px solid #ffffff65;backdrop-filter:blur(10px)}
+.hero-stats{display:flex;flex-wrap:wrap;gap:30px;margin-top:46px}
+.hero-stat strong{display:block;font-size:1.35rem}.hero-stat span{font-size:.82rem;color:#d3d9e6}
+.slide-dots{position:absolute;right:clamp(20px,7vw,100px);bottom:42px;display:flex;gap:8px;align-items:center}
+.slide-dot{width:9px;height:9px;border:0;border-radius:99px;background:#ffffff80;padding:0;transition:.25s}
+.slide-dot.active{width:30px;background:#fff}
+.floating-note{position:absolute;right:clamp(20px,7vw,100px);top:43%;max-width:230px;padding:17px;border:1px solid #ffffff55;background:#ffffff18;border-radius:20px;backdrop-filter:blur(16px);animation:float 5s ease-in-out infinite}
+.floating-note b{display:block;margin-bottom:5px}.floating-note span{font-size:.82rem;color:#e2e7ef;line-height:1.5}
+@keyframes float{50%{transform:translateY(-12px)}}
+@keyframes rise{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+section{padding:86px clamp(18px,6vw,88px)}
+.section-head{text-align:center;max-width:760px;margin:0 auto 42px}
+.kicker{text-transform:uppercase;letter-spacing:.14em;color:#e97827;font-weight:850;font-size:.75rem}
+h2{font-size:clamp(2rem,4vw,3.4rem);letter-spacing:-.05em;line-height:1.08;margin:12px 0}
+.section-head p,.muted{color:var(--muted);line-height:1.7}
+.feature-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;max-width:1300px;margin:auto}
+.feature-card{padding:25px;border:1px solid #e8ebf2;border-radius:22px;background:white;box-shadow:0 8px 30px #17203308;transition:transform .25s,box-shadow .25s}
+.feature-card:hover{transform:translateY(-7px);box-shadow:var(--shadow)}
+.feature-icon{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;font-size:1.45rem;margin-bottom:20px;background:linear-gradient(135deg,#fff0df,#ffe1c2)}
+.feature-card:nth-child(2) .feature-icon{background:linear-gradient(135deg,#e5e2ff,#d7d0ff)}
+.feature-card:nth-child(3) .feature-icon{background:linear-gradient(135deg,#d6fbf5,#b8f3e8)}
+.feature-card:nth-child(4) .feature-icon{background:linear-gradient(135deg,#dceaff,#c7dcff)}
+.feature-card h3{margin:0 0 8px}.feature-card p{font-size:.92rem;color:var(--muted);line-height:1.65;margin:0}
+.planner-section{background:linear-gradient(135deg,#f1f2ff,#effaf8 65%,#fff4e9)}
+.planner-layout{max-width:1280px;margin:auto;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:24px;align-items:start}
+.panel{background:rgba(255,255,255,.92);border:1px solid #fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(20px,3vw,34px)}
+.panel-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
+.panel-title h3{margin:0;font-size:1.35rem;letter-spacing:-.03em}
+.tag{background:#e7fbf5;color:#0e8976;border-radius:999px;padding:7px 10px;font-size:.75rem;font-weight:800}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}
+label{font-size:.83rem;font-weight:750;color:#4a5367}
+input,select{width:100%;padding:13px 13px;border:1px solid #dfe4ed;border-radius:13px;background:#fbfcff;color:#172033;outline:none;transition:border .2s,box-shadow .2s}
+input:focus,select:focus{border-color:#8c7cff;box-shadow:0 0 0 4px #8c7cff20}
+.help{font-size:.76rem;color:#798398;line-height:1.5}
+.calc-btn{width:100%;margin-top:20px;background:linear-gradient(100deg,#8067ff,#4d8dff);color:white;padding:15px;border-radius:14px;box-shadow:0 10px 24px #8067ff35}
+.results{display:flex;flex-direction:column;gap:18px}
+.total-card{position:relative;overflow:hidden;padding:26px;border-radius:21px;color:white;background:linear-gradient(120deg,#22294b,#6653c9 62%,#a47aff)}
+.total-card::after{content:"₹";position:absolute;right:15px;bottom:-45px;font-size:12rem;opacity:.08;font-weight:900}
+.total-card span{font-size:.88rem;color:#e5e2ff}.total-card h3{font-size:clamp(2rem,4vw,3rem);letter-spacing:-.05em;margin:9px 0}.total-card p{font-size:.82rem;color:#e5e2ff;margin:0;line-height:1.6;max-width:470px}
+.mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.mini-stat{background:#f8f9fd;border:1px solid #edf0f6;border-radius:16px;padding:15px}
+.mini-stat span{display:block;color:#7a8498;font-size:.76rem;margin-bottom:8px}.mini-stat strong{font-size:1rem}
+.breakdown{display:flex;flex-direction:column;gap:14px}
+.break-row{display:grid;grid-template-columns:115px 1fr 80px;gap:12px;align-items:center;font-size:.83rem}
+.bar{height:9px;background:#edf0f7;border-radius:99px;overflow:hidden}.bar span{display:block;height:100%;width:0;border-radius:99px;transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.break-row strong{text-align:right;font-size:.82rem}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.legend span{font-size:.74rem;padding:7px 9px;background:#f3f5fa;border-radius:999px;color:#657087}
+.note-box{padding:14px;border-radius:14px;background:#fff8e9;border:1px solid #ffebc0;color:#785622;font-size:.8rem;line-height:1.6}
+.awareness{max-width:1250px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.awareness-card{border-radius:25px;overflow:hidden;min-height:300px;position:relative;display:flex;align-items:flex-end;padding:28px;color:white;background-size:cover;background-position:center;box-shadow:var(--shadow)}
+.awareness-card::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#111827e8,transparent 90%)}
+.awareness-card>*{position:relative}.awareness-card h3{font-size:1.5rem;margin:0 0 8px}.awareness-card p{margin:0;line-height:1.6;color:#e6e9ef;font-size:.92rem}
+.awareness-card:first-child{background-image:url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80")}
+.awareness-card:last-child{background-image:url("https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=80")}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1200px;margin:auto}
+.step{padding:25px;border-radius:20px;background:#fff;border:1px solid #e9edf4}.step-num{font-weight:900;color:#8067ff;font-size:.85rem}.step h3{margin:12px 0 8px}.step p{color:var(--muted);font-size:.9rem;line-height:1.65;margin:0}
+footer{background:#151b2c;color:white;padding:35px clamp(20px,6vw,88px);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+footer p{color:#aab2c3;font-size:.85rem;margin:6px 0 0}
+.toast{position:fixed;z-index:50;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;background:#172033;color:white;padding:13px 18px;border-radius:13px;box-shadow:var(--shadow);transition:.3s;pointer-events:none;font-size:.9rem;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:1000px){.feature-grid{grid-template-columns:repeat(2,1fr)}.floating-note{display:none}.planner-layout{grid-template-columns:1fr}}
+@media(max-width:650px){.navlinks a:not(.nav-cta){display:none}.hero{min-height:760px}.hero-stats{gap:18px}.hero-stat{min-width:90px}.feature-grid,.awareness,.steps{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.mini-stats{grid-template-columns:1fr 1fr}.break-row{grid-template-columns:90px 1fr 70px;gap:8px}.panel-title{align-items:flex-start}.slide-dots{bottom:20px}.hero-actions .btn{width:100%}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#home" aria-label="Builder Pro home"><span class="brand-mark">⌂</span><span>Builder<span style="color:#ffc58f">Pro</span></span></a>
+  <nav class="navlinks" aria-label="Main navigation">
+    <a href="#features">Features</a><a href="#planner">Budget Planner</a><a href="#guide">Homeowner Guide</a>
+    <button class="nav-cta" onclick="document.querySelector('#planner').scrollIntoView({behavior:'smooth'})">Plan my home ↗</button>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="eyebrow"><span class="pulse"></span> YOUR HOME. YOUR PLAN. YOUR BUDGET.</div>
+    <h1>Build your dream.<br><span class="gradient-text">Know your budget.</span></h1>
+    <p>Turn a big construction decision into a clearer plan. Explore the costs of materials, labour and finishing before you begin — so you can ask better questions and plan with confidence.</p>
+    <div class="hero-actions">
+      <button class="btn btn-primary" onclick="document.querySelector('#planner').scrollIntoView({behavior:'smooth'})">Estimate my construction cost ↗</button>
+      <button class="btn btn-glass" onclick="document.querySelector('#guide').scrollIntoView({behavior:'smooth'})">Explore homeowner guide ↓</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>01</strong><span>Plan your area</span></div>
+      <div class="hero-stat"><strong>02</strong><span>Understand costs</span></div>
+      <div class="hero-stat"><strong>03</strong><span>Prepare smarter</span></div>
+    </div>
+  </div>
+  <aside class="floating-note"><b>✨ A clearer starting point</b><span>Compare cost categories before committing to a construction budget.</span></aside>
+  <div class="slide-dots" aria-label="Hero background images">
+    <button class="slide-dot active" aria-label="Show house image 1"></button><button class="slide-dot" aria-label="Show house image 2"></button><button class="slide-dot" aria-label="Show house image 3"></button>
+  </div>
+</section>
+
+<section id="features">
+  <div class="section-head reveal"><span class="kicker">Designed for homeowners</span><h2>Big decisions, made clearer.</h2><p>Builder Pro helps you understand the main pieces of a construction budget — before you sign a contract or start buying materials.</p></div>
+  <div class="feature-grid">
+    <article class="feature-card reveal"><div class="feature-icon">📐</div><h3>Area & floors</h3><p>Enter your plot dimensions, floors and planned built-up area to start an estimate.</p></article>
+    <article class="feature-card reveal"><div class="feature-icon">🧱</div><h3>Materials & labour</h3><p>See separate budget allowances for structure, materials and labour instead of one mystery total.</p></article>
+    <article class="feature-card reveal"><div class="feature-icon">🎨</div><h3>Finishing costs</h3><p>Remember flooring, painting, doors, windows, electrical and plumbing work.</p></article>
+    <article class="feature-card reveal"><div class="feature-icon">📊</div><h3>Budget dashboard</h3><p>Review the estimate, cost breakdown and contingency in a clean visual dashboard.</p></article>
+  </div>
+</section>
+
+<section class="planner-section" id="planner">
+  <div class="section-head reveal"><span class="kicker">Interactive estimator</span><h2>Your first construction budget.</h2><p>Change the assumptions to see how your estimated budget changes. Use local quotes for real decisions.</p></div>
+  <div class="planner-layout">
+    <div class="panel reveal">
+      <div class="panel-title"><h3>Project details</h3><span class="tag">STEP 01 · INPUT</span></div>
+      <form id="budgetForm">
+        <div class="form-grid">
+          <div class="field"><label for="length">Plot length (ft)</label><input id="length" type="number" min="1" max="10000" value="40" required></div>
+          <div class="field"><label for="width">Plot width (ft)</label><input id="width" type="number" min="1" max="10000" value="30" required></div>
+          <div class="field"><label for="floors">Number of floors</label><select id="floors"><option value="1">Ground floor only</option><option value="2" selected>Ground + 1 floor</option><option value="3">3 floors</option><option value="4">4 floors</option></select></div>
+          <div class="field"><label for="coverage">Built-up area per floor (sq. ft.)</label><input id="coverage" type="number" min="1" max="100000" value="1000" required><span class="help">Enter the area you plan to build on each floor, not necessarily the full plot.</span></div>
+          <div class="field"><label for="rate">Base construction rate (₹/sq. ft.)</label><input id="rate" type="number" min="1" max="100000" value="2000" required><span class="help">Illustrative rate only. Replace it with a local contractor quote.</span></div>
+          <div class="field"><label for="quality">Finish level</label><select id="quality"><option value="0.9">Basic</option><option value="1" selected>Standard</option><option value="1.25">Premium</option><option value="1.55">Luxury</option></select></div>
+          <div class="field"><label for="location">Project location</label><select id="location"><option>Hyderabad</option><option>Vijayawada</option><option>Visakhapatnam</option><option>Other / not set</option></select><span class="help">Location is saved only in this page; it does not fetch live local prices.</span></div>
+          <div class="field"><label for="contingency">Contingency allowance</label><select id="contingency"><option value="0.05">5%</option><option value="0.1" selected>10%</option><option value="0.15">15%</option></select><span class="help">A reserve for unexpected costs; discuss the right amount with your professional.</span></div>
+        </div>
+        <button class="btn calc-btn" type="submit">Calculate my budget ↗</button>
+      </form>
+    </div>
+
+    <div class="results reveal" aria-live="polite">
+      <div class="panel">
+        <div class="panel-title"><h3>Budget dashboard</h3><span class="tag">STEP 02 · RESULTS</span></div>
+        <div class="total-card"><span>Estimated project allowance</span><h3 id="total">₹44,00,000</h3><p id="summary">Based on your entered area, assumed rate, finish level and contingency. This is a planning estimate, not a quotation.</p></div>
+        <div class="mini-stats" style="margin-top:14px">
+          <div class="mini-stat"><span>Total built-up area</span><strong id="areaOut">2,000 sq. ft.</strong></div>
+          <div class="mini-stat"><span>Base estimate</span><strong id="baseOut">₹40,00,000</strong></div>
+          <div class="mini-stat"><span>Contingency reserve</span><strong id="reserveOut">₹4,00,000</strong></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title"><h3>Where the budget goes</h3><span class="tag">COST MIX</span></div>
+        <div class="breakdown" id="breakdown">
+          <div class="break-row"><span>Structure</span><div class="bar"><span style="width:35%;background:#8067ff"></span></div><strong>35%</strong></div>
+          <div class="break-row"><span>Materials</span><div class="bar"><span style="width:25%;background:#ff9a48"></span></div><strong>25%</strong></div>
+          <div class="break-row"><span>Labour</span><div class="bar"><span style="width:20%;background:#20c6b7"></span></div><strong>20%</strong></div>
+          <div class="break-row"><span>Finishing</span><div class="bar"><span style="width:20%;background:#4d8dff"></span></div><strong>20%</strong></div>
+        </div>
+        <div class="legend"><span>🧱 Structure & core works</span><span>🧰 Materials</span><span>👷 Labour</span><span>🎨 Finishing</span></div>
+        <button class="btn" id="downloadBtn" style="margin-top:20px;width:100%;background:#172033;color:white">Download budget summary (.txt) ↓</button>
+      </div>
+      <div class="note-box">⚠️ <strong>Important:</strong> This demo splits the base estimate into illustrative categories. Real costs depend on soil, structural design, local rates, permissions, taxes, specifications and site conditions. Ask a qualified architect/engineer and obtain itemised local quotations.</div>
+    </div>
+  </div>
+</section>
+
+<section id="guide">
+  <div class="section-head reveal"><span class="kicker">Homeowner awareness</span><h2>Know what to ask before you build.</h2><p>A useful estimate is not just a number. Understand what is included, what is excluded and what needs professional checking.</p></div>
+  <div class="awareness">
+    <article class="awareness-card reveal"><div><h3>Ask for an itemised quotation.</h3><p>Request clear quantities, material specifications, labour, finishing scope, payment milestones and exclusions in writing.</p></div></article>
+    <article class="awareness-card reveal"><div><h3>Plan for more than the structure.</h3><p>Check whether approvals, architect fees, soil testing, utility connections, compound walls, interiors and taxes are included.</p></div></article>
+  </div>
+</section>
+
+<section style="background:#fff">
+  <div class="section-head reveal"><span class="kicker">A smarter starting point</span><h2>Three steps to a better plan.</h2><p>Use Builder Pro to prepare for a conversation with your architect or contractor — not to replace professional advice.</p></div>
+  <div class="steps">
+    <article class="step reveal"><span class="step-num">STEP 01</span><h3>Know your requirements</h3><p>List the rooms, floors, approximate built-up area and finish quality you want.</p></article>
+    <article class="step reveal"><span class="step-num">STEP 02</span><h3>Compare like for like</h3><p>Compare itemised quotes with the same drawings, material grades and scope of work.</p></article>
+    <article class="step reveal"><span class="step-num">STEP 03</span><h3>Keep a reserve</h3><p>Discuss a contingency allowance and update the budget when designs or prices change.</p></article>
+  </div>
+</section>
+</main>
+
+<footer><div><a class="brand" href="#home"><span class="brand-mark">⌂</span><span>Builder<span style="color:#ffc58f">Pro</span></span></a><p>Plan smart. Build better.</p></div><p>Demo estimator · Illustrative values only · Not a construction quotation</p></footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const fmt = n => new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0}).format(n);
+const num = id => Number(document.getElementById(id).value);
+const $ = id => document.getElementById(id);
+let latest = null;
+
+function calculate(e){
+  if(e) e.preventDefault();
+  const length=num('length'), width=num('width'), floors=num('floors');
+  const perFloor=num('coverage'), rate=num('rate'), quality=num('quality'), contingency=num('contingency');
+  if([length,width,perFloor,rate].some(v=>!Number.isFinite(v)||v<=0)){
+    showToast('Please enter valid positive numbers in all required fields.');return;
+  }
+  const area=perFloor*floors;
+  const base=area*rate*quality;
+  const reserve=base*contingency;
+  const total=base+reserve;
+  // Illustrative split; actual trade shares vary by project and scope.
+  const parts=[['Structure',.35,'#8067ff'],['Materials',.25,'#ff9a48'],['Labour',.20,'#20c6b7'],['Finishing',.20,'#4d8dff']];
+  $('total').textContent=fmt(total);
+  $('areaOut').textContent=area.toLocaleString('en-IN')+' sq. ft.';
+  $('baseOut').textContent=fmt(base);
+  $('reserveOut').textContent=fmt(reserve);
+  $('summary').textContent=`${floors} floor(s) · ${$('location').value} · ${$('quality').selectedOptions[0].text} finish. This is a planning estimate, not a quotation.`;
+  $('breakdown').innerHTML=parts.map(([name,share,color])=>`<div class="break-row"><span>${name}</span><div class="bar"><span style="width:0;background:${color}" data-width="${share*100}%"></span></div><strong>${fmt(base*share)}</strong></div>`).join('');
+  requestAnimationFrame(()=>document.querySelectorAll('#breakdown .bar span').forEach(el=>el.style.width=el.dataset.width));
+  latest={length,width,floors,perFloor,area,rate,quality: $('quality').selectedOptions[0].text,location:$('location').value,base,reserve,total,contingency:contingency*100,parts};
+  showToast('Budget estimate updated. Review the assumptions before relying on it.');
+}
+$('budgetForm').addEventListener('submit',calculate);
+
+$('downloadBtn').addEventListener('click',()=>{
+  if(!latest) calculate();
+  const d=latest;if(!d)return;
+  const textContent=`BUILDER PRO — CONSTRUCTION BUDGET SUMMARY
+================================================
+Project location: ${d.location}
+Plot dimensions: ${d.length} ft × ${d.width} ft (${(d.length*d.width).toLocaleString('en-IN')} sq. ft. plot area)
+Floors: ${d.floors}
+Built-up area per floor: ${d.perFloor.toLocaleString('en-IN')} sq. ft.
+Total built-up area: ${d.area.toLocaleString('en-IN')} sq. ft.
+Finish level: ${d.quality}
+Assumed base rate: ${fmt(d.rate)} per sq. ft.
+
+ESTIMATE
+Base estimate: ${fmt(d.base)}
+Contingency (${d.contingency}%): ${fmt(d.reserve)}
+TOTAL PLANNING ALLOWANCE: ${fmt(d.total)}
+
+Illustrative cost split of base estimate:
+${d.parts.map(([name,share])=>`${name}: ${fmt(d.base*share)} (${share*100}%)`).join('\n')}
+
+IMPORTANT NOTES
+- This is a preliminary planning estimate, not a contractor quotation.
+- Rates and category shares are illustrative and are not live local market prices.
+- Actual costs depend on drawings, soil/site conditions, structure, specifications, permissions, taxes, utility work and local quotations.
+- Get an itemised quotation and consult qualified construction professionals before making financial or building decisions.
+`;
+  const blob=new Blob([textContent],{type:'text/plain;charset=utf-8'});
+  const url=URL.createObjectURL(blob);const a=document.createElement('a');
+  a.href=url;a.download='Builder-Pro-Budget-Summary.txt';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+  showToast('Your budget summary has been downloaded.');
+});
+
+function showToast(message){const t=$('toast');t.textContent=message;t.classList.add('show');clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>t.classList.remove('show'),3200)}
+
+const hero=$('.hero');
+const images=[
+  'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2200&q=85',
+  'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=2200&q=85',
+  'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2200&q=85'
+];
+let slide=0;
+function setSlide(i){
+  slide=i;
+  hero.style.setProperty('--unused','');
+  hero.style.setProperty('background-image','none');
+  hero.style.setProperty('--hero-image',`url("${images[i]}")`);
+  hero.style.setProperty('background-color','#182033');
+  hero.style.setProperty('background-image',`linear-gradient(90deg,rgba(10,16,31,.84),rgba(10,16,31,.42) 54%,rgba(10,16,31,.1)),url("${images[i]}")`);
+  document.querySelectorAll('.slide-dot').forEach((dot,j)=>dot.classList.toggle('active',j===i));
+}
+document.querySelectorAll('.slide-dot').forEach((dot,i)=>dot.addEventListener('click',()=>setSlide(i)));
+setInterval(()=>setSlide((slide+1)%images.length),6500);
+
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+  if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}
+}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+calculate();
+</script>
+</body>
+</html>
