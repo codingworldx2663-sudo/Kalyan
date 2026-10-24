@@ -1,0 +1,342 @@
+/* ========================================================
+   BuildWise - House Construction Material Cost Estimator
+   Custom Styling & Animated Violet-Pink Mesh Background
+   ======================================================== */
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Base Body Styles */
+body {
+  background-color: #0b0713;
+  color: #f8fafc;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ========================================================
+   Admiring Violet & Pink Animated Background
+   ======================================================== */
+.bg-gradient-animated {
+  background: linear-gradient(135deg, #120422 0%, #290849 25%, #420857 50%, #200438 75%, #0d021a 100%);
+  background-size: 400% 400%;
+  animation: gradientFlow 18s ease infinite alternate;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Floating Radiant Violet & Pink Glowing Orbs */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.6;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.orb-1 {
+  width: 650px;
+  height: 650px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.5) 0%, rgba(124, 58, 237, 0.25) 50%, transparent 80%);
+  top: -150px;
+  left: -100px;
+  animation: floatOrb1 22s ease-in-out infinite alternate;
+}
+
+.orb-2 {
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.45) 0%, rgba(219, 39, 119, 0.2) 50%, transparent 80%);
+  top: 30%;
+  right: -150px;
+  animation: floatOrb2 25s ease-in-out infinite alternate;
+}
+
+.orb-3 {
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(244, 63, 94, 0.35) 0%, rgba(147, 51, 234, 0.25) 50%, transparent 80%);
+  bottom: -100px;
+  left: 20%;
+  animation: floatOrb3 20s ease-in-out infinite alternate;
+}
+
+.orb-4 {
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(217, 70, 239, 0.3) 0%, rgba(99, 102, 241, 0.2) 60%, transparent 80%);
+  top: 60%;
+  left: 60%;
+  animation: floatOrb4 24s ease-in-out infinite alternate;
+}
+
+@keyframes floatOrb1 {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(120px, 80px) scale(1.15);
+  }
+  100% {
+    transform: translate(-60px, 140px) scale(0.95);
+  }
+}
+
+@keyframes floatOrb2 {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(-140px, -100px) scale(1.2);
+  }
+  100% {
+    transform: translate(80px, 60px) scale(0.9);
+  }
+}
+
+@keyframes floatOrb3 {
+  0% {
+    transform: translate(0px, 0px) scale(0.9);
+  }
+  50% {
+    transform: translate(100px, -120px) scale(1.1);
+  }
+  100% {
+    transform: translate(-80px, 40px) scale(1);
+  }
+}
+
+@keyframes floatOrb4 {
+  0% {
+    transform: translate(0px, 0px) scale(1.1);
+  }
+  50% {
+    transform: translate(-100px, 90px) scale(0.9);
+  }
+  100% {
+    transform: translate(120px, -70px) scale(1.15);
+  }
+}
+
+/* Subtle dot-mesh texture overlay */
+.mesh-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* ========================================================
+   Glassmorphism Cards & Containers
+   ======================================================== */
+.glass-card {
+  background: rgba(18, 11, 31, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 16px 40px rgba(10, 3, 20, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(236, 72, 153, 0.3);
+  box-shadow: 0 20px 50px rgba(236, 72, 153, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Item Card Specifics */
+.item-card {
+  background: rgba(22, 13, 38, 0.72);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.25rem;
+  transition: all 0.25s ease;
+  overflow: hidden;
+}
+
+.item-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(244, 114, 182, 0.45);
+  box-shadow: 0 12px 30px rgba(236, 72, 153, 0.2);
+}
+
+.item-card.is-excluded {
+  opacity: 0.45;
+  filter: grayscale(80%);
+}
+
+.item-card.is-excluded:hover {
+  opacity: 0.7;
+}
+
+/* Pipeline Step Pills */
+.pipeline-step {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 0.875rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+
+.pipeline-step:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-color: rgba(236, 72, 153, 0.3);
+}
+
+.pipeline-step.active {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.45), rgba(236, 72, 153, 0.45));
+  border-color: rgba(244, 114, 182, 0.7);
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(236, 72, 153, 0.35);
+}
+
+.pipeline-step.completed {
+  color: #a78bfa;
+  border-color: rgba(167, 139, 250, 0.4);
+}
+
+/* Quantity Stepper buttons */
+.stepper-btn {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f1f5f9;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.15s ease;
+}
+
+.stepper-btn:hover {
+  background: rgba(236, 72, 153, 0.3);
+  border-color: rgba(236, 72, 153, 0.6);
+  color: #fff;
+  transform: scale(1.08);
+}
+
+/* Neon Glow Accents */
+.neon-glow-pink {
+  box-shadow: 0 0 25px rgba(236, 72, 153, 0.4);
+}
+
+.neon-glow-violet {
+  box-shadow: 0 0 25px rgba(124, 58, 237, 0.4);
+}
+
+/* Toast Notifications */
+.toast-msg {
+  animation: slideInToast 0.3s ease-out forwards;
+}
+
+@keyframes slideInToast {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #7c3aed, #ec4899);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #db2777;
+}
+
+/* ========================================================
+   Print Stylesheet for Real Estate / Bank / Contractor BOQ
+   ======================================================== */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  
+  .bg-gradient-animated,
+  header,
+  #pipelineContainer,
+  #addItemModal,
+  #imagePreviewModal,
+  #toastContainer,
+  aside,
+  .no-print {
+    display: none !important;
+  }
+
+  main {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+
+  #finalSummarySection {
+    display: block !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #000 !important;
+    padding: 0 !important;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    color: #000 !important;
+  }
+
+  th, td {
+    border: 1px solid #cbd5e1 !important;
+    color: #000 !important;
+    padding: 8px !important;
+  }
+
+  thead {
+    background-color: #f1f5f9 !important;
+  }
+}
